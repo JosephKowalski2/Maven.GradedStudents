@@ -70,6 +70,7 @@ public class Classroom {
 
 
         List<Student> studentList = Arrays.asList(students);
+        studentList.removeAll(Collections.singleton(null));
         Comparator<Student> comparator = Comparator.comparingDouble((Student s) -> -s.getAverageExamScore())
                 .thenComparing(s -> s.getLastName())
                 .thenComparing(s -> s.getFirstName());
@@ -81,7 +82,7 @@ public class Classroom {
         Student[] studentGrades = this.getStudentsByScore();
         Map<Student, String> gradeBook = new HashMap<>();
         double percentile;
-        int count = 0;
+        int count = getStudentsByScore().length;
         for (int i = 0; i < students.length; i++){
             if (students[i] == null){
                 count = i + 1;

@@ -37,7 +37,7 @@ public class Student {
     public String getExamScores(){
         String scores = "";
         for (int i = 0; i < getNumberOfExamsTaken(); i++){
-            scores += "Exam " + (i + 1)  + "score is " + examScores.get(i) + "/n";
+            scores += "Exam " + (i + 1)  + " score is " + examScores.get(i) + "\n";
         }
         return scores;
     }
@@ -61,8 +61,8 @@ public class Student {
     }
 
     public String toString(){
-        String studentInfo = firstName + " " + lastName + "/n";
-        studentInfo += "Average Score: " + getAverageExamScore() + "/n";
+        String studentInfo = firstName + " " + lastName + "\n";
+        studentInfo += "Average Score: " + getAverageExamScore() + "\n";
         studentInfo += getExamScores();
         return studentInfo;
     }
