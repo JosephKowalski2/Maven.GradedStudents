@@ -50,7 +50,7 @@ public class Classroom {
         }
     }
 
-    public Student[] getStudentsByScore(){
+    public Student[] getStudentsByScore() {
 //        for (int i = 0; i < students.length; i++){
 //            if (students[i].getAverageExamScore() > students[i + 1].getAverageExamScore()){
 //                students[i] = students[i + 1];
@@ -67,13 +67,38 @@ public class Classroom {
 //                }
 //            }
 //        }
-//    }
 
-    List<Student> studentList = Arrays.asList(students);
-    Comparator<Student> comparator = Comparator.comparingDouble((Student s) -> -s.getAverageExamScore())
-            .thenComparing(s -> s.getLastName())
-            .thenComparing(s -> s.getFirstName());
-    Collections.sort(studentList, comparator);
-    return studentList.toArray(new Student[students.length]);
+
+        List<Student> studentList = Arrays.asList(students);
+        Comparator<Student> comparator = Comparator.comparingDouble((Student s) -> -s.getAverageExamScore())
+                .thenComparing(s -> s.getLastName())
+                .thenComparing(s -> s.getFirstName());
+        Collections.sort(studentList, comparator);
+        return studentList.toArray(new Student[students.length]);
+    }
+
+    public Map<Student, String> getGradeBook(){
+        Student[] studentGrades = this.getStudentsByScore();
+        Map<Student, String> gradeBook = new HashMap<>();
+        for (int i = 0; i < studentGrades.length; i++){
+            double percentile = ((studentGrades.length - i) / students.length);
+            if (percentile >= .9){
+                gradeBook.put(studentGrades[i], "A");
+            }
+            else if (percentile > .7){
+                gradeBook.put(studentGrades[i], "B");
+            }
+            else if (percentile >= .5){
+                gradeBook.put(studentGrades[i], "C");
+            }
+            else if (percentile > .1){
+                gradeBook.put(studentGrades[i], "D");
+            }
+            else {
+                gradeBook.put(studentGrades[i], "F");
+            }
+        }
+        return gradeBook;
+    }
 
 }
