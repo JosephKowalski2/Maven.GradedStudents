@@ -80,18 +80,29 @@ public class Classroom {
     public Map<Student, String> getGradeBook(){
         Student[] studentGrades = this.getStudentsByScore();
         Map<Student, String> gradeBook = new HashMap<>();
-        for (int i = 0; i < studentGrades.length; i++){
-            double percentile = ((studentGrades.length - i) / (double)students.length);
-            if (percentile >= .9){
+        double percentile;
+        int count = 0;
+        for (int i = 0; i < students.length; i++){
+            if (students[i] == null){
+                count = i + 1;
+                break;
+            }
+            else if (students.length - 1 == i){
+                count = students.length;
+            }
+        }
+        for (int i = 0; i < count; i++){
+            percentile = ((count - i - 1.0/ (count * 100)));
+            if (percentile >= 90){
                 gradeBook.put(studentGrades[i], "A");
             }
-            else if (percentile > .7){
+            else if (percentile <= 89 && percentile >= 71){
                 gradeBook.put(studentGrades[i], "B");
             }
-            else if (percentile >= .5){
+            else if (percentile <= 70 && percentile >= 50){
                 gradeBook.put(studentGrades[i], "C");
             }
-            else if (percentile > .1){
+            else if (percentile <= 49 && percentile >= 11){
                 gradeBook.put(studentGrades[i], "D");
             }
             else {
