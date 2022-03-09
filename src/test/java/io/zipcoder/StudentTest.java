@@ -3,6 +3,9 @@ package io.zipcoder;
 public class StudentTest {
 
     public void testGetFirstName() {
+        String firstName = "Cousin";
+        String lastName = "ITT";
+        Double [] examScores = {100.0, 97.8, 89.4};
     }
 
     public void testGetLastName() {

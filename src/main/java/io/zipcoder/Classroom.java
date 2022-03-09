@@ -81,7 +81,7 @@ public class Classroom {
         Student[] studentGrades = this.getStudentsByScore();
         Map<Student, String> gradeBook = new HashMap<>();
         for (int i = 0; i < studentGrades.length; i++){
-            double percentile = ((studentGrades.length - i) / students.length);
+            double percentile = ((studentGrades.length - i) / (double)students.length);
             if (percentile >= .9){
                 gradeBook.put(studentGrades[i], "A");
             }
